@@ -19,6 +19,7 @@ import os.log
 #endif
 
 import Logging
+import SafeGlobal
 
 
 
@@ -41,10 +42,13 @@ import Logging
 public enum SemiSingletonConfig {
 	
 #if canImport(os)
-	@available(macOS 10.12, tvOS 10.0, iOS 10.0, watchOS 3.0, *)
-	public static var oslog: OSLog? = .default
+#if swift(>=6.0)
+	/* See <https://developer.apple.com/forums/thread/747816?answerId=781922022#781922022>. */
+#warning("Reevaluate whether nonisolated(unsafe) is still necessary.")
 #endif
-	public static var logger: Logging.Logger? = {
+	@SafeGlobal nonisolated(unsafe) public static var oslog: OSLog? = .default
+#endif
+	@SafeGlobal public static var logger: Logging.Logger? = {
 #if canImport(os)
 		if #available(macOS 10.12, tvOS 10.0, iOS 10.0, watchOS 3.0, *) {
 			return nil

@@ -1,25 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "RecursiveSyncDispatch",
-        "repositoryURL": "https://github.com/Frizlab/RecursiveSyncDispatch.git",
-        "state": {
-          "branch": null,
-          "revision": "04936f64e00d898006fc97b5ec938d8ce1fa14ea",
-          "version": "1.0.1"
-        }
-      },
-      {
-        "package": "swift-log",
-        "repositoryURL": "https://github.com/apple/swift-log.git",
-        "state": {
-          "branch": null,
-          "revision": "173f567a2dfec11d74588eea82cecea555bdc0bc",
-          "version": "1.4.0"
-        }
+  "pins" : [
+    {
+      "identity" : "recursivesyncdispatch",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Frizlab/RecursiveSyncDispatch.git",
+      "state" : {
+        "revision" : "04936f64e00d898006fc97b5ec938d8ce1fa14ea",
+        "version" : "1.0.1"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "safeglobal",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Frizlab/SafeGlobal.git",
+      "state" : {
+        "revision" : "aed1d6c7db070320e0d8e332c29bddfabb26e414",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "swift-log",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-log.git",
+      "state" : {
+        "revision" : "e97a6fcb1ab07462881ac165fdbb37f067e205d5",
+        "version" : "1.5.4"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax.git",
+      "state" : {
+        "revision" : "08a2f0a9a30e0f705f79c9cfaca1f68b71bdc775",
+        "version" : "510.0.0"
+      }
+    }
+  ],
+  "version" : 2
 }
