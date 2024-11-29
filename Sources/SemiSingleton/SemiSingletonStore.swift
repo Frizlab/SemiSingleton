@@ -228,7 +228,7 @@ public final class SemiSingletonStore : @unchecked Sendable {
 #else
 	private let registeredObjects = LinuxStrongToWeakMapTable<StoreKey, AnyObject>()
 #endif
-	private let retrievingQueue = DispatchQueue(label: "com.happn.semi-singleton.store-sync", qos: .userInitiated)
+	private let retrievingQueue = DispatchQueue(label: "me.frizlab.semi-singleton.store-sync", qos: .userInitiated)
 	
 	private var ongoingInitKeys = Set<AnyHashable>()
 	
