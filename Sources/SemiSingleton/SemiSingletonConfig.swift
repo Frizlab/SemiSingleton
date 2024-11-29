@@ -43,7 +43,9 @@ extension ConfKeys.SemiSingleton {
 
 extension Conf {
 	
+#if canImport(os)
 	#declareConfAccessor(\.semiSingleton.oslog,  OSLog?         .self)
+#endif
 	#declareConfAccessor(\.semiSingleton.logger, Logging.Logger?.self)
 	
 }
