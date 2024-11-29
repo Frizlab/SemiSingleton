@@ -1,6 +1,15 @@
 {
-  "originHash" : "972202e7c8f06a025d0ebb900cba4f3204eb5c7f467ab6dcc46c6e5cc5511108",
+  "originHash" : "fff293068d4dba82569bebc06115ddb1e30146ef645402dc53fef45d74d723cd",
   "pins" : [
+    {
+      "identity" : "globalconfmodule",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Frizlab/GlobalConfModule.git",
+      "state" : {
+        "revision" : "4a45bd577bacbe95bf54587e15f796c2e64ea613",
+        "version" : "0.4.0"
+      }
+    },
     {
       "identity" : "recursivesyncdispatch",
       "kind" : "remoteSourceControl",
@@ -11,21 +20,21 @@
       }
     },
     {
-      "identity" : "safeglobal",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Frizlab/SafeGlobal.git",
-      "state" : {
-        "revision" : "4f64746ccc3a06e0c0b97ff1c572d9f7ef636206",
-        "version" : "0.3.1"
-      }
-    },
-    {
       "identity" : "swift-log",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log.git",
       "state" : {
         "revision" : "96a2f8a0fa41e9e09af4585e2724c4e825410b91",
         "version" : "1.6.2"
+      }
+    },
+    {
+      "identity" : "swift-service-context",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-service-context.git",
+      "state" : {
+        "revision" : "0c62c5b4601d6c125050b5c3a97f20cce881d32b",
+        "version" : "1.1.0"
       }
     },
     {

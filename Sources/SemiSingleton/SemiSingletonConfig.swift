@@ -14,45 +14,36 @@ See the License for the specific language governing permissions and
 limitations under the License. */
 
 import Foundation
-#if canImport(os)
-import os.log
+#if canImport(OSLog)
+import OSLog
 #endif
 
+import GlobalConfModule
 import Logging
-import SafeGlobal
 
 
 
-/**
- The global configuration for SemiSingleton.
- 
- You can modify all of the variables in this struct to change the default behavior of SemiSingleton.
- Be careful, none of these properties are thread-safe.
- It is a good practice to change the behaviors you want when you start your app, and then leave the config alone.
- 
- - Note: We allow the configuration for a generic `Logger` (from Apple’s swift-log repository), **and** an `OSLog` logger.
- We do this because Apple recommends using `OSLog` directly whenever possible for performance and privacy reason
-  (see [swift-log’s Readme](https://github.com/apple/swift-log/blob/4f876718737f2c2b2ecd6d4cb4b99e0367b257a4/README.md) for more informations).
- 
- The recommended configuration for Logging is to use `OSLog` when you can (you are on an Apple platform that supports `OSLog`) and `Logger` otherwise.
- You can also configure both if you want, though I’m not sure why that would be needed.
- 
- In the future, OSLog’s API should be modified to match the swift-log’s one, and we’ll then probably drop the support for OSLog
-  (because you’ll be able to use OSLog through Logging without any performance or privacy hit). */
-public enum SemiSingletonConfig {
-	
-#if canImport(os)
-	@SafeGlobal public static var oslog: OSLog? = .default
-#endif
-	@SafeGlobal public static var logger: Logging.Logger? = {
-#if canImport(os)
-		if #available(macOS 10.12, tvOS 10.0, iOS 10.0, watchOS 3.0, *) {
-			return nil
-		}
-#endif
-		return Logger(label: "com.happn.SemiSingleton")
-	}()
-	
+public extension ConfKeys {
+	/* SemiSingleton conf namespace declaration. */
+	struct SemiSingleton {}
+	var semiSingleton: SemiSingleton {SemiSingleton()}
 }
 
-typealias Conf = SemiSingletonConfig
+
+extension ConfKeys.SemiSingleton {
+	
+#if canImport(os)
+	#declareConfKey("oslog",  OSLog?         .self, defaultValue: OSLog(subsystem: "com.happn.RetryingOperation", category: "Main"))
+	#declareConfKey("logger", Logging.Logger?.self, defaultValue: nil)
+#else
+	#declareConfKey("logger", Logging.Logger?.self, defaultValue: .init(label: "me.frizlab.SemiSingleton"))
+#endif
+
+}
+
+extension Conf {
+	
+	#declareConfAccessor(\.semiSingleton.oslog,  OSLog?         .self)
+	#declareConfAccessor(\.semiSingleton.logger, Logging.Logger?.self)
+	
+}

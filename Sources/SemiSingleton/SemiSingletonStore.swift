@@ -18,6 +18,7 @@ import Foundation
 import os.log
 #endif
 
+import GlobalConfModule
 import RecursiveSyncDispatch
 
 
@@ -93,9 +94,9 @@ public final class SemiSingletonStore : @unchecked Sendable {
 					/* Invalid type found. We do not un-register the previous object, we simply return a non-singleton… */
 #if canImport(os)
 					if #available(macOS 10.12, tvOS 10.0, iOS 10.0, watchOS 3.0, *) {
-						SemiSingletonConfig.oslog.flatMap{ os_log("Asked to retrieve an object of type %{public}@ for key %@, but registered object is of type %{public}@. Creating a new, non-singleton’d object of required type. For reference, registered object is %@", log: $0, type: .error, String(describing: O.self), String(describing: k), String(describing: type(of: ro)), String(describing: ro)) }}
+						Conf.oslog.flatMap{ os_log("Asked to retrieve an object of type %{public}@ for key %@, but registered object is of type %{public}@. Creating a new, non-singleton’d object of required type. For reference, registered object is %@", log: $0, type: .error, String(describing: O.self), String(describing: k), String(describing: type(of: ro)), String(describing: ro)) }}
 #endif
-					SemiSingletonConfig.logger?.error("Asked to retrieve an object of type \(String(describing: O.self)) for key \(String(describing: k)), but registered object is of type \(String(describing: type(of: ro))). Creating a new, non-singleton’d object of required type. For reference, registered object is \(String(describing: ro))")
+					Conf.logger?.error("Asked to retrieve an object of type \(String(describing: O.self)) for key \(String(describing: k)), but registered object is of type \(String(describing: type(of: ro))). Creating a new, non-singleton’d object of required type. For reference, registered object is \(String(describing: ro))")
 					assert(!forceClassInKeys)
 					
 					isNew = true
@@ -129,9 +130,9 @@ public final class SemiSingletonStore : @unchecked Sendable {
 					/* Invalid type found. We do not un-register the previous object, we simply return a non-singleton… */
 #if canImport(os)
 					if #available(macOS 10.12, tvOS 10.0, iOS 10.0, watchOS 3.0, *) {
-						SemiSingletonConfig.oslog.flatMap{ os_log("Asked to retrieve an object of type %{public}@ for key %@, but registered object is of type %{public}@. Creating a new, non-singleton’d object of required type. For reference, registered object is %@", log: $0, type: .error, String(describing: O.self), String(describing: k), String(describing: type(of: ro)), String(describing: ro)) }}
+						Conf.oslog.flatMap{ os_log("Asked to retrieve an object of type %{public}@ for key %@, but registered object is of type %{public}@. Creating a new, non-singleton’d object of required type. For reference, registered object is %@", log: $0, type: .error, String(describing: O.self), String(describing: k), String(describing: type(of: ro)), String(describing: ro)) }}
 #endif
-					SemiSingletonConfig.logger?.error("Asked to retrieve an object of type \(String(describing: O.self)) for key \(String(describing: k)), but registered object is of type \(String(describing: type(of: ro))). Creating a new, non-singleton’d object of required type. For reference, registered object is \(String(describing: ro))")
+					Conf.logger?.error("Asked to retrieve an object of type \(String(describing: O.self)) for key \(String(describing: k)), but registered object is of type \(String(describing: type(of: ro))). Creating a new, non-singleton’d object of required type. For reference, registered object is \(String(describing: ro))")
 					assert(!forceClassInKeys)
 					
 					isNew = true
