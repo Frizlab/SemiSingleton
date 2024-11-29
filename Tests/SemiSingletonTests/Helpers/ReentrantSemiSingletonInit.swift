@@ -15,6 +15,8 @@ limitations under the License. */
 
 import Foundation
 
+import SafeGlobal
+
 import SemiSingleton
 
 
@@ -33,6 +35,7 @@ class ReentrantSemiSingletonInit : SemiSingletonWithFallibleInit {
 		
 	}
 	
+	@SafeGlobal
 	static var objectNumber = 0
 	
 	typealias SemiSingletonKey = String

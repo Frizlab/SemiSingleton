@@ -15,12 +15,15 @@ limitations under the License. */
 
 import Foundation
 
+import SafeGlobal
+
 import SemiSingleton
 
 
 
 class SimpleSemiSingleton : SemiSingleton {
 	
+	@SafeGlobal
 	static var objectNumber = 0
 	
 	typealias SemiSingletonKey = String

@@ -13,7 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. */
 
+import Foundation
 import XCTest
+
 @testable import SemiSingleton
 
 
@@ -61,7 +63,7 @@ class SemiSingletonTests: XCTestCase {
 		}
 		
 		let key = #function
-		var checkDone = false
+		let checkDone = CheckDone()
 		let semiSingletonStore = SemiSingletonStore(forceClassInKeys: true)
 		let queue = DispatchQueue(label: "TestQueue", autoreleaseFrequency: .workItem)
 		
@@ -73,11 +75,18 @@ class SemiSingletonTests: XCTestCase {
 		}
 		queue.async{
 			XCTAssert(semiSingletonStore.registeredSemiSingleton(forKey: key) as SimpleSemiSingleton? == nil)
-			checkDone = true
+			checkDone.markDone()
 		}
 		
 		/* XCTWaiter not available on Linux… yet? */
-		while !checkDone {Thread.sleep(until: Date(timeIntervalSinceNow: 0.01))}
+		while !checkDone.value {Thread.sleep(until: Date(timeIntervalSinceNow: 0.01))}
+	}
+	
+	private final class CheckDone : @unchecked Sendable {
+		var value: Bool {lock.withLock{ _value }}
+		func markDone() {lock.withLock{ _value = true }}
+		private let lock = NSLock()
+		private var _value: Bool = false
 	}
 	
 	func testReentrantOtherClassSemiSingletonAllocation() throws {

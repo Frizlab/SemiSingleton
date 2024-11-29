@@ -14,6 +14,7 @@ let package = Package(
 		.package(url: "https://github.com/apple/swift-log.git",               from: "1.2.0"),
 		.package(url: "https://github.com/Frizlab/GlobalConfModule.git",      from: "0.4.0"),
 		.package(url: "https://github.com/Frizlab/RecursiveSyncDispatch.git", from: "1.0.0"),
+		.package(url: "https://github.com/Frizlab/SafeGlobal.git",            from: "0.3.0"),
 	],
 	targets: [
 		.target(name: "SemiSingleton", dependencies: [
@@ -21,6 +22,9 @@ let package = Package(
 			.product(name: "RecursiveSyncDispatch", package: "RecursiveSyncDispatch"),
 			.product(name: "GlobalConfModule",      package: "GlobalConfModule"),
 		], swiftSettings: swiftSettings),
-		.testTarget(name: "SemiSingletonTests", dependencies: ["SemiSingleton"], swiftSettings: swiftSettings)
+		.testTarget(name: "SemiSingletonTests", dependencies: [
+			"SemiSingleton", /* <- Tested target. */
+			.product(name: "SafeGlobal", package: "SafeGlobal")
+		], swiftSettings: swiftSettings)
 	]
 )

@@ -1,5 +1,5 @@
 {
-  "originHash" : "fff293068d4dba82569bebc06115ddb1e30146ef645402dc53fef45d74d723cd",
+  "originHash" : "d0279b067af7693a4a26aa563f417020b314591baa3ff6ddacf22038023fe7fa",
   "pins" : [
     {
       "identity" : "globalconfmodule",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "04936f64e00d898006fc97b5ec938d8ce1fa14ea",
         "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "safeglobal",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Frizlab/SafeGlobal.git",
+      "state" : {
+        "revision" : "4f64746ccc3a06e0c0b97ff1c572d9f7ef636206",
+        "version" : "0.3.1"
       }
     },
     {
