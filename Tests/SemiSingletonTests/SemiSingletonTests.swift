@@ -57,7 +57,7 @@ class SemiSingletonTests: XCTestCase {
 	}
 	
 	func testSimpleSemiSingletonDeallocationAsyncDispatch() {
-		guard #available(OSX 10.12, tvOS 10.0, iOS 10.0, *) else {
+		guard #available(macOS 10.12, tvOS 10.0, iOS 10.0, *) else {
 			NSLog("Test unavailable on this OS.")
 			return
 		}
