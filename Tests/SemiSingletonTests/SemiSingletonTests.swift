@@ -82,13 +82,6 @@ class SemiSingletonTests: XCTestCase {
 		while !checkDone.value {Thread.sleep(until: Date(timeIntervalSinceNow: 0.01))}
 	}
 	
-	private final class CheckDone : @unchecked Sendable {
-		var value: Bool {lock.withLock{ _value }}
-		func markDone() {lock.withLock{ _value = true }}
-		private let lock = NSLock()
-		private var _value: Bool = false
-	}
-	
 	func testReentrantOtherClassSemiSingletonAllocation() throws {
 		let key = #function
 		let semiSingletonStore = SemiSingletonStore(forceClassInKeys: true)
