@@ -42,11 +42,7 @@ import SafeGlobal
 public enum SemiSingletonConfig {
 	
 #if canImport(os)
-#if swift(>=6.0)
-	/* See <https://developer.apple.com/forums/thread/747816?answerId=781922022#781922022>. */
-#warning("Reevaluate whether nonisolated(unsafe) is still necessary.")
-#endif
-	@SafeGlobal nonisolated(unsafe) public static var oslog: OSLog? = .default
+	@SafeGlobal public static var oslog: OSLog? = .default
 #endif
 	@SafeGlobal public static var logger: Logging.Logger? = {
 #if canImport(os)
