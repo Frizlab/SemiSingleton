@@ -3,13 +3,13 @@
 
 ## What is a Semi-Singleton?
 You all know the Singleton pattern.
-A Semi-Singleton will be an object that will be returned as an already existing instance or a new one depending on whether there was already an instance in memory for the given id.
+A Semi-Singleton will be an object that will be returned as an already existing instance or a new one depending on whether there was already an instance in memory for the given ID.
 
 Here’s an example of a lifecycle of a Semi-Singleton object:
-- A first client (`client1`) requests a semi-singleton object with id `obj`. Such an object does not already exists: it is instantiated. `client1` keeps a strong reference to this object for now.
-- A second client (`client2`) requests a semi-singleton object with id `obj`. As the object already exists in memory, the same instance `client1` uses is returned.
+- A first client (`client1`) requests a semi-singleton object with ID `obj`. Such an object does not already exists: it is instantiated. `client1` keeps a strong reference to this object for now.
+- A second client (`client2`) requests a semi-singleton object with ID `obj`. As the object already exists in memory, the same instance `client1` uses is returned.
 - Both `client1` and `client2` release the semi-singleton they share. It is fully deallocated.
-- A third client requests a semi-singleton object with id `obj`. As the previous semi-singleton with this id does not exist anymore, a new object is instantiated.
+- A third client requests a semi-singleton object with ID `obj`. As the previous semi-singleton with this ID does not exist anymore, a new object is instantiated.
 
 In code, a Semi-Singleton is any object conforming to the `SemiSingleton` or `SemiSingletonWithFallibleInit` protocol.
 
